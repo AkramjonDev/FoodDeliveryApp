@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 
 const initialState = {
   items: [],
@@ -9,7 +10,6 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state, action) => {
-      // Push the new item to the items array
       state.items = [...state.items, action.payload];
     },
     removeFromBasket: (state, action) => {
@@ -20,7 +20,7 @@ export const basketSlice = createSlice({
 
       if (index >= 0) {
         newBasket.splice(index, 1);
-        state.items = newBasket; // Update state with the new basket
+        state.items = newBasket;
       } else {
         console.warn(
           `Can't remove product (id: ${action.payload.id}) as it's not in the basket`
@@ -30,14 +30,19 @@ export const basketSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { addToBasket, removeFromBasket } = basketSlice.actions; // Corrected here
+// Action creators
+export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
+// Selectors
 export const selectBasketItems = (state) => state.basket.items;
 
-export const selectBasketItemssById = (state, id) =>
-  state.basket.items.filter((item) => item.id === id);
+export const selectBasketItemsById = createSelector(
+  [selectBasketItems, (state, id) => id],
+  (items, id) => items.filter((item) => item.id === id)
+);
 
-export const selectBasketTotal = (state) => state.basket.items.reduce((total, item) => total += item.price, 0);
+export const selectBasketTotal = createSelector([selectBasketItems], (items) =>
+  items.reduce((total, item) => (total += item.price), 0)
+);
 
 export default basketSlice.reducer;

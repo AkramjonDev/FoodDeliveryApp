@@ -11,7 +11,7 @@ import {
   addToBasket,
   removeFromBasket,
   selectBasketItems,
-  selectBasketItemssById,
+  selectBasketItemsById,
 } from "../features/basketSlice";
 
 const DishRow = ({ id, name, description, price, image }) => {
@@ -19,7 +19,7 @@ const DishRow = ({ id, name, description, price, image }) => {
 
   const [isPressed, setIsPressed] = useState(false);
   const dispatch = useDispatch();
-  const items = useSelector((state) => selectBasketItemssById(state, id));
+  const items = useSelector((state) => selectBasketItemsById(state, id));
 
   const addItemToBasket = () => {
     dispatch(addToBasket({ id, name, description, price, image }));
