@@ -39,11 +39,28 @@ const DeliveryScreen = () => {
         </View>
       </SafeAreaView>
 
-
       <MapView
-      
+        initialRegion={{
+          latitude: restaurant?.lat || 37.7749, // Default latitude if not available
+          longitude: restaurant?.long || -122.4194, // Default longitude if not available
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        }}
+        className="flex-1 mt-10 z-0"
+        mapType="mutedStandard"
       >
-
+        {restaurant?.lat && restaurant?.long && (
+          <Marker
+            coordinate={{
+              latitude: restaurant.lat,
+              longitude: restaurant.long,
+            }}
+            title={restaurant.title}
+            description={restaurant.restaurant_description}
+            identifier="origin"
+            pinColor="#00CCBB"
+          />
+        )}
       </MapView>
     </View>
   );

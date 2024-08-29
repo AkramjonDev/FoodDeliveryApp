@@ -14,6 +14,8 @@ const RestaurantCard = ({
   restaurant_description,
   short_description,
   dishes,
+  long,
+  lat,
 }) => {
   const navigation = useNavigation();
 
@@ -30,6 +32,8 @@ const RestaurantCard = ({
           restaurant_description,
           short_description,
           dishes,
+          long,
+          lat,
         });
       }}
       style={styles.container}

@@ -72,6 +72,8 @@ const FeaturedRow = ({ id, title, description }) => {
               restaurant_description={restaurant.restaurant_description}
               dishes={restaurant.dishes}
               short_description={restaurant.short_description}
+              long={restaurant.longtitude}
+              lat={restaurant.latitude}
             />
           ))
         ) : (

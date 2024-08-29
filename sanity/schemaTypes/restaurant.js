@@ -1,4 +1,4 @@
-import {validation} from 'sanity'
+import { validation } from 'sanity';
 
 export default {
   name: 'restaurant',
@@ -37,13 +37,33 @@ export default {
       name: 'category',
       title: 'Category',
       type: 'reference',
-      to: [{type: 'category'}],
+      to: [{ type: 'category' }],
     },
     {
       name: 'dishes',
       title: 'Dishes',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'dishes'}]}],
+      of: [{ type: 'reference', to: [{ type: 'dishes' }] }],
+    },
+    {
+      name: 'latitude',
+      title: 'Latitude',
+      type: 'number',
+      validation: (Rule) =>
+        Rule.required()
+          .min(-90)
+          .max(90)
+          .error('Latitude must be between -90 and 90'),
+    },
+    {
+      name: 'longitude',
+      title: 'Longitude',
+      type: 'number',
+      validation: (Rule) =>
+        Rule.required()
+          .min(-180)
+          .max(180)
+          .error('Longitude must be between -180 and 180'),
     },
   ],
-}
+};
