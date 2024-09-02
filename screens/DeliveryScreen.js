@@ -41,8 +41,8 @@ const DeliveryScreen = () => {
 
       <MapView
         initialRegion={{
-          latitude: restaurant?.lat || 37.7749, // Default latitude if not available
-          longitude: restaurant?.long || -122.4194, // Default longitude if not available
+          latitude: restaurant?.lat || 37.7749, // Default latitude 
+          longitude: restaurant?.long || -122.4194, // Default longitude 
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}

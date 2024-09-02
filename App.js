@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import BasketScreen from "./screens/BasketScreen";
 import PreparingOrderScreen from "./screens/PreparingOrderScreen";
-import Delivery from "./screens/DeliveryScreen";
 import DeliveryScreen from "./screens/DeliveryScreen";
 
 const Stack = createNativeStackNavigator();
@@ -44,7 +43,6 @@ export default function App() {
             }}
           />
         </Stack.Navigator>
-
         <StatusBar style="auto" />
       </Provider>
     </NavigationContainer>
